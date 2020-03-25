@@ -2,8 +2,11 @@
 
 try {
   include __DIR__ . '/../includes/DatabaseConnection.php';
-  include __DIR__ . '/../includes/DatabaseFunctions.php';
-  delete($pdo, 'board', 'id', $_POST['id']); 
+  include __DIR__ . '/../classes/DatabaseTable.php';
+
+  $boardsTable = new DatabaseTable($pdo, 'board', 'id'); 
+
+  $boardsTable->delete($_POST['id']); 
 
     header('location: boards.php');
 

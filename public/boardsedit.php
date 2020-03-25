@@ -1,15 +1,18 @@
 <?php
-include __DIR__ . '/../includes/DatabaseConnection.php';
-include __DIR__ . '/../includes/DatabaseFunctions.php';
 
 try {
+  include __DIR__ . '/../includes/DatabaseConnection.php';
+  include __DIR__ . '/../classes/DatabaseTable.php';
+
+  $boardsTable = new DatabaseTable($pdo, 'board', 'id'); 
+
 	if (isset($_POST['board'])) {
 
 		$board = $_POST['board'];
 		$board['boarddate'] = new DateTime();
 		$board['authorId'] = 2;
 
-		save($pdo, 'board', 'id', $board);
+		$boardsTable->save($board);
 		
 		header('location: boards.php');  
 
@@ -17,13 +20,12 @@ try {
 	else {
 
 		if (isset($_GET['id'])) {
-      $board = findById($pdo, 'board', 'id', $_GET['id']);
-      $title = '게시글 글 수정';
-    }
-    else{$title = '게시글 글 등록';
-    }
+      $board = $boardsTable->findById($_GET['id']);
+      
+		}
 
-		
+		$title = '게시글 글 입력';
+
 		ob_start();
 
 		include  __DIR__ . '/../templates/boardsedit.html.php';

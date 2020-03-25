@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="kr">
+
     <head>
+    
         <meta charset="UTF-8">
-        <link
-            rel="stylesheet"
-            href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
-        <script
-            src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+       
         <script>
             jQuery(function ($) {
                 $("#boardDataTable").DataTable({
@@ -37,8 +33,7 @@
 
                 });
             });
-        </script>
-        <title></title>
+        </script>       
     </head>
     <body>
         <article class="post">
@@ -82,9 +77,9 @@
                                 <td>
                                     <input
                                         type="button"
-                                        onclick="location.href='boardsedit.php? id=<?=$board['id']?>'"
+                                        onclick="location.href='index.php?action=edit&id=<?=$board['id']?>'"
                                         value="수정"></input>
-                                    <form action="boardsdelete.php" method="post">
+                                    <form action="index.php?action=delete" method="post">
                                         <input type="hidden" name="id" value="<?php echo $board['id']?>">
                                         <input type="submit" value="삭제">
                                     </form>
@@ -95,39 +90,12 @@
                         </tbody>
                     </table>
                     <div class="button">
-                        <input type="button" value="게시글 등록" onclick="location.href = 'boardsedit.php'">
+                        <input type="button" value="게시글 등록" onclick="location.href = 'index.php?action=edit'">
                     </div>
                 </div>
             </div>
         </article>
 
-        <script>
-            var lang_kor = {
-                "decimal": "",
-                "emptyTable": "데이터가 없습니다.",
-                "info": "_START_ - _END_ (총 _TOTAL_ 명)",
-                "infoEmpty": "0명",
-                "infoFiltered": "(전체 _MAX_ 명 중 검색결과)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_ 개씩 보기",
-                "loadingRecords": "로딩중...",
-                "processing": "처리중...",
-                "search": "검색 : ",
-                "zeroRecords": "검색된 데이터가 없습니다.",
-                "paginate": {
-                    "first": "첫 페이지",
-                    "last": "마지막 페이지",
-                    "next": "다음",
-                    "previous": "이전"
-                },
-                "aria": {
-                    "sortAscending": " :  오름차순 정렬",
-                    "sortDescending": " :  내림차순 정렬"
-                }
-            };
-            // $(document).ready(function() {     $('#boardDataTable').DataTable( {
-            // data: dataSet,         language : lang_kor or lang_eng     } ); } );
-        </script>
-    </body>
-</html>
+
+    </body>      
+  

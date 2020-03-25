@@ -2,33 +2,28 @@
 
 try {
     include __DIR__ . '/../includes/DatabaseConnection.php';
-    include __DIR__ . '/../includes/DatabaseFunctions.php';
+    include __DIR__ . '/../classes/DatabaseTable.php';
+    include __DIR__ . '/../controllers/BoardController.php';
 
-   $result = findAll($pdo, 'board');
-
-   $boards = [];
-   foreach($result as $board)
-   {
-     $author = findById($pdo, 'author', 'id', $board['authorid']);
-
-     $boards[] = [
-          'id' => $board['id'],
-          'boardtext' => $board['boardtext'],
-          'boarddate' => $board['boarddate'],
-          'name' => $author['name'],
-          'email' => $author['email']
-     ];
-   }
-    
-  $title = '예제';
-
-  $totalBoards = total($pdo,'board');
-
-  ob_start();
-
-  include  __DIR__ . '/../templates/boards.html.php';
-
-  $output = ob_get_clean();
+    $boardsTable = new DatabaseTable($pdo, 'board', 'id');
+    $authorsTable = new DatabaseTable($pdo, 'author', 'id');
+  
+    $boardController = new BoardController($boardsTable, $authorsTable);
+    if(isset($_GETp['edit'])){
+      $page = $boardController->edit();
+    }
+    else if( isset($_GET['delete']))
+    {
+      $page = $boardController->delete();
+    }
+    else if( isset($_GET['list']))
+    {
+      $page = $boardController->list();
+    }
+    else{
+      $page = $boardController->home();
+    }
+   
 
 }
 catch (PDOException $e) {

@@ -3,19 +3,19 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>예제</title>
+        <title><?=$title?></title>
         <meta name="viewport" content="width = devic-width, initaial-scale=1.0">
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat"
             rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
 
         <script src="https://kit.fontawesome.com/b664d7c580.js">
             /*아이콘*/
-        </script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>      
+        </script>     
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-
+        <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>  
+        <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
         <script>
             $(function () {
                 $(".headBtn").click(function () {
@@ -23,6 +23,8 @@
                 });
             });
         </script>
+
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body class="nohero">
@@ -30,7 +32,7 @@
             <div class="container">
                 <div class="container-small">
                     <a href="index.php" class="headIcon">
-                        <img src="img/JamICON.png" alt="">
+                        <img src="img/JamICON.png" alt="" 	!important;>
                     </a>
 
                     <button type="button" class="headBtn">
@@ -44,16 +46,16 @@
                             <a href="index.php">메인</a>
                         </li>
                         <li>
-                            <a href="about.php">소개</a>
+                            <a href="index.php?action=about">소개</a>
                         </li>
                         <li>
-                            <a href="recipe.php">레시피</a>
+                            <a href="index.php?action=recipe">레시피</a>
                         </li>
                         <li>
-                            <a href="contact.php">문의</a>
+                            <a href="index.php?action=contact">문의</a>
                         </li>
                         <li>
-                            <a href='boards.php'>게시판</a>
+                            <a href='index.php?action=list'>게시판</a>
                         </li>
                     </ul>
                 </nav>
@@ -61,7 +63,7 @@
         </header>
 
         <main>
-            <?php echo $output?>
+            <?= $output?>
         </main>
         <footer>
             <div class="container">
